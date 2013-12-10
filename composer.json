@@ -1,0 +1,23 @@
+{
+    "name": "hariadi/isms",
+    "description": "PHP implementation of ISMS Service",
+    "keywords": ["isms", "sms", "bulk"],
+    "homepage": "https://github.com/hariadi/isms",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Hariadi Hinta",
+            "email": "diperakui@yahoo.com",
+            "homepage": "http://hariadi.org/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-0": { 
+            "ISMS": "lib/"
+        }
+    }
+}

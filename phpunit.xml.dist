@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit backupGlobals="false" bootstrap="tests/bootstrap.php" colors="true">
+    <testsuites>
+        <testsuite name="ISMS SMS Test Suite">
+            <directory>tests/ISMS/</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./lib/ISMS/</directory>
+        </whitelist>
+    </filter>
+</phpunit>
