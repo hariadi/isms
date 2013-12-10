@@ -1,5 +1,7 @@
 # ISMS
 
+[![Build Status](https://travis-ci.org/hariadi/isms.png)](https://travis-ci.org/hariadi/isms)
+
 > PHP implementation of [ISMS](http://www.isms.com.my) Service
 
 ## Official Documentation
