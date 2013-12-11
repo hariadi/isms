@@ -4,10 +4,11 @@ namespace ISMS;
 
 class SMS
 {
-    
-    const SEND_SMS              = 'isms_send.php';
-    const BALANCE_CHECK_URL     = 'isms_balance.php';
-    const SMS_SCHEDULE          = 'isms_scheduler.php';
+    const VERSION = '0.1.0';
+    const HOST                  = 'https://isms.com.my/';
+    const SEND                  = 'isms_send.php?';
+    const BALANCE_CHECK_URL     = 'isms_balance.php?';
+    const SMS_SCHEDULE          = 'isms_scheduler.php?';
 
     private $config;
 
@@ -27,11 +28,10 @@ class SMS
             'pwd' => $this->config->password,
         );
 
-        $query = http_build_query($params);
 
-        $url = $this->config->api_url . SMS::SEND_SMS . '?' . $query;
+        $url = $this->config->api_url . SMS::SEND;
 
-        $code = $this->execute($url);
+        $code = $this->execute($url, $params);
 
         switch ($code) {
             case 200:
@@ -49,15 +49,25 @@ class SMS
         }
     }
    
-    protected function execute($link)
+    protected function execute($link, $params = array())
     {
-        $http = curl_init($link);
-        curl_setopt($http, CURLOPT_RETURNTRANSFER, TRUE); 
-        $http_result = curl_exec($http);
-        $http_status = curl_getinfo($http, CURLINFO_HTTP_CODE);
-        curl_close($http);
-        
-        return $http_result;
+        // Use SSL: http://www.php.net/manual/en/function.curl-setopt-array.php#89850
+        $ch = curl_init();
+        $options = array(
+            CURLOPT_RETURNTRANSFER => TRUE,
+            CURLOPT_URL            => $link,
+            CURLOPT_HEADER         => false,
+            CURLOPT_ENCODING       => "",
+            CURLOPT_POST           => 1,
+            CURLOPT_POSTFIELDS     => $params,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => false,
+        );
+        curl_setopt_array( $ch, $options );
+        $result = curl_exec( $ch );
+        curl_close( $ch );
+
+        return $result;
     }
 }
 
