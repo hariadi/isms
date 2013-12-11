@@ -1,6 +1,7 @@
 {
     "name": "hariadi/isms",
     "description": "PHP implementation of ISMS Service",
+    "version": "0.1.0",
     "keywords": ["isms", "sms", "bulk"],
     "homepage": "https://github.com/hariadi/isms",
     "license": "MIT",
